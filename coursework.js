@@ -1,0 +1,4 @@
+const courseTabs=[...document.querySelectorAll('[role="tab"]')];
+function selectCourseTab(tab,focus=false){courseTabs.forEach(item=>{const selected=item===tab;item.setAttribute('aria-selected',String(selected));item.tabIndex=selected?0:-1;document.getElementById(item.getAttribute('aria-controls')).hidden=!selected;});if(focus)tab.focus();}
+courseTabs.forEach((tab,index)=>{tab.addEventListener('click',()=>selectCourseTab(tab));tab.addEventListener('keydown',event=>{let next;if(event.key==='ArrowRight')next=(index+1)%courseTabs.length;else if(event.key==='ArrowLeft')next=(index+courseTabs.length-1)%courseTabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=courseTabs.length-1;else return;event.preventDefault();selectCourseTab(courseTabs[next],true);});});
+selectCourseTab(courseTabs[0]);

@@ -1,0 +1,3 @@
+const imageViewer=document.querySelector('.planter-viewer');let imageTrigger;
+document.querySelectorAll('[data-planter-photo]').forEach(link=>link.addEventListener('click',event=>{if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();imageTrigger=link;imageViewer.querySelector('img').src=link.href;imageViewer.querySelector('img').alt=link.querySelector('img').alt;imageViewer.querySelector('p').textContent=link.closest('figure').querySelector('figcaption').textContent;imageViewer.showModal();}));
+imageViewer.querySelector('button').addEventListener('click',()=>imageViewer.close());imageViewer.addEventListener('close',()=>imageTrigger?.focus());
